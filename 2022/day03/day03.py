@@ -1,13 +1,15 @@
 import os
 
 # Convert a list of character to number and return sum
+
+
 def convert(items):
     s = 0
     for i in items:
         if i.isupper():
-            s += ord(i)-38
+            s += ord(i)-ord('A') + 27
         else:
-            s += ord(i)-96
+            s += ord(i)-ord('a')+1
     return s
 
 
