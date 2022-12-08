@@ -56,6 +56,9 @@ class Client(http.HTTPClient):
     def create_readme(self):
         """Create a README, simple clone puzzle description,
         ugly but it works"""
+        if os.path.isfile('README.md'):
+            LOG.warn('README is existed, skip')
+            return
         r = self.get('')
         self._validate_resp(r)
 
@@ -65,6 +68,9 @@ class Client(http.HTTPClient):
     def get_input(self, fname):
         """Get puzzle input"""
         LOG.info(f'Getting input for day {self.day}')
+        if os.path.isfile(fname):
+            LOG.warn('Input file is existed, skip')
+            return
         r = self.get('input')
         self._validate_resp(r)
         with open(fname, 'wb') as f:
