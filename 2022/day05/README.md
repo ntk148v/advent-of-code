@@ -2,13 +2,11 @@
 <html lang="en-us">
 <head>
 <meta charset="utf-8"/>
-<title>Day 5 - Advent of Code 2022</title>
 <!--[if lt IE 9]><script src="/static/html5.js"></script><![endif]-->
 <link href='//fonts.googleapis.com/css?family=Source+Code+Pro:300&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
 <link rel="stylesheet" type="text/css" href="/static/style.css?30"/>
 <link rel="stylesheet alternate" type="text/css" href="/static/highcontrast.css?0" title="High Contrast"/>
 <link rel="shortcut icon" href="/favicon.png"/>
-<script>window.addEventListener('click', function(e,s,r){if(e.target.nodeName==='CODE'&&e.detail===3){s=window.getSelection();s.removeAllRanges();r=document.createRange();r.selectNodeContents(e.target);s.addRange(r);}});</script>
 </head><!--
 
 
@@ -187,17 +185,5 @@ move 1 from 1 to 2
   <a href="javascript:void(0);" onclick="var mastodon_instance=prompt('Mastodon Instance / Server Name?'); if(typeof mastodon_instance==='string' && mastodon_instance.length){this.href='https://'+mastodon_instance+'/share?text=I%27ve+completed+Part+One+of+%22Supply+Stacks%22+%2D+Day+5+%2D+Advent+of+Code+2022+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2022%2Fday%2F5'}else{return false;}" target="_blank">Mastodon</a
 ></span>]</span> this puzzle.</p>
 </main>
-
-<!-- ga -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-69522494-1', 'auto');
-ga('set', 'anonymizeIp', true);
-ga('send', 'pageview');
-</script>
-<!-- /ga -->
 </body>
 </html>
