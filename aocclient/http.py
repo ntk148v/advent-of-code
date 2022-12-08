@@ -38,7 +38,7 @@ class HTTPClient(object):
         headers = copy.deepcopy(kwargs.pop('headers', {}))
         if headers.get('Content-Type', 'application/json') is None:
             headers['Content-Type'] = 'application/json'
-        if self.endpoint.endswith("/") or url.startswith("/"):
+        if self.endpoint.endswith("/") or url.startswith("/") or not url:
             conn_url = "%s%s" % (self.endpoint, url)
         else:
             conn_url = "%s/%s" % (self.endpoint, url)

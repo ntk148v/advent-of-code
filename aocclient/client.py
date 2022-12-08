@@ -54,13 +54,13 @@ class Client(http.HTTPClient):
         self.get_input(input_fname)
 
     def create_readme(self):
-        """Create a README"""
-        template = """# DAY {:02d}
+        """Create a README, simple clone puzzle description,
+        ugly but it works"""
+        r = self.get('')
+        self._validate_resp(r)
 
-Source: <{:s}>
-"""
         with open('README.md', 'w') as f:
-            f.write(template.format(self.day, self.endpoint))
+            f.write(r.text)
 
     def get_input(self, fname):
         """Get puzzle input"""
