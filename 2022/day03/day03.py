@@ -1,8 +1,11 @@
 import os
 
+from aocclient.client import Client
+
+cli = Client(year=2022, day=3)
+cli.setup()
+
 # Convert a list of character to number and return sum
-
-
 def convert(items):
     s = 0
     for i in items:
@@ -22,7 +25,9 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
                  set(ruckpack[len(ruckpack)//2:]))
         s1 += convert(items)
     print("Part 1: ", s1)
+    cli.submit_answer(1, s1)
     for i in range(0, len(ruckpacks), 3):
         items = (set(ruckpacks[i]) & set(ruckpacks[i+1]) & set(ruckpacks[i+2]))
         s2 += convert(items)
     print("Part 2: ", s2)
+    cli.submit_answer(1, s2)

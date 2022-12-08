@@ -1,5 +1,11 @@
 import os
 
+from aocclient.client import Client
+
+cli = Client(year=2022, day=4)
+cli.setup()
+
+
 count1 = count2 = 0
 
 with open(os.path.join(os.getcwd(), "input.txt")) as f:
@@ -18,4 +24,6 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
             count2 += 1
 
     print("Part 1: ", count1)
+    cli.submit_answer(1, count1)
     print("Part 2: ", count2)
+    cli.submit_answer(2, count2)

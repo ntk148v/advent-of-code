@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 import os
 
+from aocclient.client import Client
+
+cli = Client(year=2022, day=2)
+cli.setup()
+
 m1 = {
     'A': 1,
     'B': 2,
@@ -51,4 +56,6 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
             elif m1[round[0]] == 3:
                 score2 += 1
     print("Part 1: ", score1)
+    cli.submit_answer(1, score1)
     print("Part 2: ", score2)
+    cli.submit_answer(2, score2)
