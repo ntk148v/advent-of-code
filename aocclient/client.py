@@ -4,6 +4,8 @@ import os
 import pathlib
 import re
 
+from bs4 import BeautifulSoup
+
 from aocclient import http
 
 LOG = logging.getLogger(__name__)
@@ -56,14 +58,13 @@ class Client(http.HTTPClient):
     def create_readme(self):
         """Create a README, simple clone puzzle description,
         ugly but it works"""
-        if os.path.isfile('README.md'):
-            LOG.warn('README is existed, skip')
-            return
         r = self.get('')
         self._validate_resp(r)
+        # Extract desc
+        soup = BeautifulSoup(r.text, 'html.parser')
 
         with open('README.md', 'w') as f:
-            f.write(r.text)
+            f.write(soup.find("article", {"class": "day-desc"}).prettify())
 
     def get_input(self, fname):
         """Get puzzle input"""
