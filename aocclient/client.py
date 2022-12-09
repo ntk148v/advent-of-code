@@ -24,7 +24,7 @@ class Client(http.HTTPClient):
             LOG.exception('Invalid year or day')
         self.year = year
         self.day = day
-        endpoint = f'https://adventofcode.com/{self.year}/'
+        endpoint = f'https://adventofcode.com/{self.year}/day/{self.day}'
         super(Client, self).__init__(endpoint, **kwargs)
         self.get_session()
 
@@ -45,13 +45,6 @@ class Client(http.HTTPClient):
             LOG.exception(
                 'Server return 200, but is asking for identification')
 
-    def get_calendar(self):
-        r = self.get('')
-        self._validate_resp(r)
-        # Extract calendar
-        soup = BeautifulSoup(r.text, 'html.parser')
-        return soup.find("pre", {"class": "calendar"}).prettify()
-
     def setup(self, input_fname=None):
         # Create README
         self.create_readme()
@@ -65,7 +58,7 @@ class Client(http.HTTPClient):
     def create_readme(self):
         """Create a README, simple clone puzzle description,
         ugly but it works"""
-        r = self.get('day/{self.day}')
+        r = self.get('')
         self._validate_resp(r)
         content = ''
         # Extract desc
@@ -84,7 +77,7 @@ class Client(http.HTTPClient):
         if os.path.isfile(fname):
             LOG.warn('Input file is existed, skip')
             return
-        r = self.get('day/{self.day}/input')
+        r = self.get('input')
         self._validate_resp(r)
         with open(fname, 'wb') as f:
             f.write(r.content)
@@ -92,8 +85,7 @@ class Client(http.HTTPClient):
 
     def submit_answer(self, part, answer):
         LOG.info(f'Submitting day {self.day:02d} - part {part:02d}: {answer}')
-        r = self.post('day/{self.day}/answer',
-                      data={'level': part, 'answer': answer})
+        r = self.post('answer', data={'level': part, 'answer': answer})
         self._validate_resp(r)
 
         t = r.text.lower()
