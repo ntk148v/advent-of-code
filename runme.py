@@ -13,7 +13,17 @@ if __name__ == '__main__':
     parser.add_argument("-d", "--day", action="store", default=1,
                         type=int, help="The challenge day, by default start from day 1")
     args = parser.parse_args()
-    print(args)
+
+    # Init client
+    cli = Client(year=args.year, day=args.day)
+
+    # Update Year's README to update progress
+    template = """Advent of Code 2022 - Calendar
+
+{}
+"""
+    with open(f'{args.year}/README.md', 'w') as f:
+        f.write(template.format(cli.get_calendar()))
 
     # Create directory
     daydir = os.path.join(str(args.year), f'day{args.day:02d}')
@@ -40,8 +50,7 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
         f.write(template.format(args.year, args.day))
 
     # Create link
-    os.symlink('../../aocclient', 'aocclient')
+    # os.symlink('../../aocclient', 'aocclient')
 
     # Setup
-    cli = Client(year=args.year, day=args.day)
     cli.setup()
