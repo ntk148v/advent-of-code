@@ -4,8 +4,8 @@ import re
 
 from aocclient.client import Client
 
-cli = Client(year=2022, day=5)
-cli.setup()
+ans1 = None
+ans2 = None
 
 stacks_1 = {}
 
@@ -27,7 +27,6 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
                 continue
             stacks_1[i+1].insert(0, e)
     stacks_2 = copy.deepcopy(stacks_1)
-    print("Before: ", stacks_2)
 
     procedure = [re.findall(r'\d+', i)
                  for i in raw_procedure.strip().split('\n')]
@@ -42,10 +41,11 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
         # Part 2
         stacks_2[int(r[2])] += stacks_2[int(r[1])][-int(r[0]):]
         stacks_2[int(r[1])] = stacks_2[int(r[1])][:-int(r[0])]
-    print("After: ", stacks_2)
-    result1 = ''.join([v[-1] for v in stacks_1.values()])
-    print("Part 1: ", result1)
-    cli.submit_answer(1, result1)
-    result2 = ''.join([v[-1] for v in stacks_2.values()])
-    print("Part 2: ", result2)
-    cli.submit_answer(1, result2)
+    ans1 = ''.join([v[-1] for v in stacks_1.values()])
+    print("Part 1: ", ans1)
+    ans2 = ''.join([v[-1] for v in stacks_2.values()])
+    print("Part 2: ", ans2)
+
+cli = Client(year=2022, day=5)
+cli.submit_answer(1, ans1)
+cli.submit_answer(2, ans2)

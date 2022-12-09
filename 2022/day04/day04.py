@@ -2,11 +2,7 @@ import os
 
 from aocclient.client import Client
 
-cli = Client(year=2022, day=4)
-cli.setup()
-
-
-count1 = count2 = 0
+ans1 = ans2 = 0
 
 with open(os.path.join(os.getcwd(), "input.txt")) as f:
     pairs = f.read().strip().split('\n')
@@ -15,15 +11,17 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
         # Part 1
         if (pair[0][0] <= pair[1][0] and pair[0][1] >= pair[1][1]) or \
                 (pair[1][0] <= pair[0][0] and pair[1][1] >= pair[0][1]):
-            count1 += 1
+            ans1 += 1
 
         # Part 2
         overlap = set(range(pair[0][0], pair[0][1]+1)) & set(
             range(pair[1][0], pair[1][1]+1))
         if len(overlap) > 0:
-            count2 += 1
+            ans2 += 1
 
-    print("Part 1: ", count1)
-    cli.submit_answer(1, count1)
-    print("Part 2: ", count2)
-    cli.submit_answer(2, count2)
+    print("Part 1: ", ans1)
+    print("Part 2: ", ans2)
+
+cli = Client(year=2022, day=4)
+cli.submit_answer(1, ans1)
+cli.submit_answer(2, ans2)
