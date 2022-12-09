@@ -60,11 +60,16 @@ class Client(http.HTTPClient):
         ugly but it works"""
         r = self.get('')
         self._validate_resp(r)
+        content = ''
         # Extract desc
         soup = BeautifulSoup(r.text, 'html.parser')
+        # Get both part one and two
+        result = soup.find_all("article", {"class": "day-desc"})
+        for r in result:
+            content += r.prettify()
 
         with open('README.md', 'w') as f:
-            f.write(soup.find("article", {"class": "day-desc"}).prettify())
+            f.write(content)
 
     def get_input(self, fname):
         """Get puzzle input"""
