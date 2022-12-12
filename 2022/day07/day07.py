@@ -54,9 +54,28 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
                     new_path = curr.joinpath(args[0])
                     fs[curr].append(new_path)
                     curr = new_path
+
     for p in fs.keys():
         fs[p] = calculate_size(fs, p)
         if fs[p] <= 100000:
             ans1 += fs[p]
+
     print("Part 1: ", ans1)
-    cli.submit_answer(1, ans1)
+
+    # This is for part 2
+    total = 70000000
+    used = fs[pathlib.Path('/')]
+    free = total - used
+    need = 30000000 - free
+    min_size = used
+    min_dir = None
+
+    for p, s in fs.items():
+        if s >= need and s < min_size:
+            min_size = s
+            min_dir = p
+    print("Part 2: ", min_size, min_dir)
+
+cli = Client(year=2022, day=7)
+cli.submit_answer(1, ans1)
+cli.submit_answer(2, ans2)
