@@ -38,8 +38,10 @@ cli = Client(year={}, day={})
 cli.submit_answer(1, ans1)
 cli.submit_answer(2, ans2)
 """
-    with open(f'day{args.day:02d}.py', 'w') as f:
-        f.write(template.format(args.year, args.day))
+
+    if not os.path.isfile(f'day{args.day:02d}.py'):
+        with open(f'day{args.day:02d}.py', 'w') as f:
+            f.write(template.format(args.year, args.day))
 
     # Create link
     if not os.path.isdir('aocclient'):
