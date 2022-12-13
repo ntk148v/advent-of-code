@@ -4,10 +4,7 @@ import pathlib
 
 from aocclient.client import Client
 
-cli = Client(year=2022, day=7)
-
-ans1 = 0
-ans2 = None
+ans1 = ans2 = 0
 
 
 def calculate_size(fs, path):
@@ -67,14 +64,14 @@ with open(os.path.join(os.getcwd(), "input.txt")) as f:
     used = fs[pathlib.Path('/')]
     free = total - used
     need = 30000000 - free
-    min_size = used
+    ans2 = used
     min_dir = None
 
     for p, s in fs.items():
-        if s >= need and s < min_size:
-            min_size = s
+        if s >= need and s < ans2:
+            ans2 = s
             min_dir = p
-    print("Part 2: ", min_size, min_dir)
+    print("Part 2: ", ans2, min_dir)
 
 cli = Client(year=2022, day=7)
 cli.submit_answer(1, ans1)
